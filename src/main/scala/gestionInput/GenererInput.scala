@@ -6,8 +6,8 @@ import java.util.Date
 class GenererInput(path:String,dataFolderPath:String,firstDay:String, nbrOfDays:Int) extends Thread{
 
   val nbrTransactions: Int = 10000
-  val nbrMagasins: Int = 15
-  val nbrProduit : Int = 1500
+  val nbrMagasins: Int = 30
+  val nbrProduit : Int = 3000
   val qteMax : Int = 20
   val prixMax = 50
   val year: String =firstDay.substring(0,4)
