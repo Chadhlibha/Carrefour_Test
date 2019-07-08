@@ -11,8 +11,8 @@ object CarrefourMain {
      val transactionDate : String = args(1)
 
 
-   val dataPath : String =   "/home/lansrod/Bureau/BIGDATA/Carrefour/"       //expl: /home/lansrod/Bureau/ComCarrefourTest/data/
-    val transactionDate : String = "20190708"
+  // val dataPath : String =   "/home/lansrod/Bureau/BIGDATA/Carrefour/"       //expl: /home/lansrod/Bureau/ComCarrefourTest/data/
+   // val transactionDate : String = "20190708"
 
     val genererInputFiles = new GenererInput(dataPath,"/data",transactionDate,7)
     genererInputFiles.run()     //générer les inputs
