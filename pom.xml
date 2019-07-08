@@ -11,11 +11,6 @@
 
 
 
-        <dependency>
-            <groupId>org.scala-lang</groupId>
-            <artifactId>scala-compiler</artifactId>
-            <version>2.12.0</version>
-        </dependency>
 
         <dependency>
             <groupId>org.scala-lang</groupId>
@@ -25,27 +20,67 @@
         <dependency>
             <groupId>org.scalatest</groupId>
             <artifactId>scalatest_2.12</artifactId>
-            <version>3.0.2</version>
+            <version>3.0.0</version>
             <scope>test</scope>
         </dependency>
 
+
     </dependencies>
 
-    <build>
-        <sourceDirectory>src/main/scala</sourceDirectory>
-        <testSourceDirectory>src/test/scala</testSourceDirectory>
 
+    <build>
         <plugins>
+            <!-- Ce plugin compile les fichiers Scala -->
             <plugin>
                 <groupId>net.alchim31.maven</groupId>
                 <artifactId>scala-maven-plugin</artifactId>
                 <version>3.1.3</version>
+                <executions>
+                    <execution>
+                        <id>scala-compile-first</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>scala-test-compile</id>
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Plugin pour packager le jar avec l'ensemble de ces dependances -->
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>CarrefourMain</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
             </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>3.0.2</version>
                 <configuration>
                     <archive>
                         <manifest>
