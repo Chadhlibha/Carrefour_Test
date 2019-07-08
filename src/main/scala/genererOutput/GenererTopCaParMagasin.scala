@@ -1,15 +1,14 @@
 package genererOutput
 
-
 import java.io.{BufferedWriter, File, FileWriter}
 
 class GenererTopCaParMagasin(mypath :String) {
 
   /** Générer le fichier output top_100_ca_<ID_MAGASIN>_YYYYMMDD.data
     *
-    * @param list
-    * @param idMagasin
-    * @param date
+    * @param list         la liste qui contient les transactions pour un certain magasin
+    * @param idMagasin    l'identifiant du magasin
+    * @param date         la date de transaction
     */
 
   def generateFile(list: List[(String,String, String, Double)],idMagasin:String,date:String):Unit= {
